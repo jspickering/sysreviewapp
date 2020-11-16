@@ -130,7 +130,7 @@ ui <- dashboardPage(
     checkboxGroupInput("show_vars", "Columns in Sys Review data to show:",
                          names(final_studies), selected = names(final_studies)),
       downloadButton("downloadData", "Download"),
-      helpText("Click what columns you're interested in, if you like you can download your choices as a .csv")
+      helpText("Click the columns you're interested in and download your choices as a .csv")
     ),
   dashboardBody(
     tabsetPanel(id = "dataset",

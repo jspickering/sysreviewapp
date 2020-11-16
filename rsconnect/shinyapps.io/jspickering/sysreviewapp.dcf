@@ -1,0 +1,10 @@
+name: sysreviewapp
+title:
+username:
+account: jspickering
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2468719
+bundleId: 3283651
+url: https://jspickering.shinyapps.io/sysreviewapp/
+when: 1592418107.02383
