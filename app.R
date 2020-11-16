@@ -4,7 +4,8 @@ library(shinydashboard)
 library(tidyverse)
 
 my_studies <- read_csv('parkinsons_studies.csv') %>%
-  clean_names()
+  clean_names() %>%
+  select(-c(study_id))
 
 # fyi
 column_names <- colnames(my_studies) %>%
@@ -128,9 +129,9 @@ ui <- dashboardPage(
   dashboardHeader(title = "Impulsivity and inhibitory control in Parkinson's", titleWidth = 450),
   dashboardSidebar(
     checkboxGroupInput("show_vars", "Columns in Sys Review data to show:",
-                         names(final_studies), selected = names(final_studies)),
-      downloadButton("downloadData", "Download"),
-      helpText("Click the columns you're interested in and download your choices as a .csv")
+                         names(final_studies), selected = names(final_studies))#,
+    #  downloadButton("downloadData", "Download"),
+   #   helpText("Click the columns you're interested in and download your choices as a .csv")
     ),
   dashboardBody(
     tabsetPanel(id = "dataset",
@@ -147,7 +148,7 @@ server <- function(input, output) {
   
   # choose columns to display
   output$mytable1 <- DT::renderDataTable({
-    DT::datatable(final_studies[, input$show_vars, drop = FALSE], list(pageLength = 33, info = FALSE, lengthMenu = list(c(32, -1), c("32", "All"))))
+    DT::datatable(final_studies[, input$show_vars, drop = FALSE], rownames = FALSE, list(pageLength = 33, info = FALSE, lengthMenu = list(c(32, -1), c("32", "All"))))
     #DT::datatable(my_apps, options = list(lengthMenu = c(5,30,50), pageLength = 35))
     
   })
